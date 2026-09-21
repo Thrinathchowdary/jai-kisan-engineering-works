@@ -14,9 +14,11 @@ import {
   FaArrowRight,
   FaCheck,
 } from "react-icons/fa";
-import { categories, products } from "./data/products";
+import { categories, products as localProducts } from "./data/products";
 import { supportedLanguages } from "./i18n/translations";
 import { useLanguage } from "./context/LanguageContext";
+import { useProducts } from "./context/ProductContext";
+import AdminApp from "./AdminApp";
 
 const phone = "9160830444";
 const secondPhone = "9912335353";
@@ -487,7 +489,7 @@ function About() {
   );
 }
 
-function Categories({ onSelect }) {
+function Categories({ onSelect, products }) {
   const { t, getLocalizedCategory } = useLanguage();
   return (
     <section className="category-section section" id="categories">
@@ -589,7 +591,12 @@ function ProductCard({ product, onDetails }) {
   );
 }
 
-function Catalogue({ selectedCategory, setSelectedCategory, onDetails }) {
+function Catalogue({
+  selectedCategory,
+  setSelectedCategory,
+  onDetails,
+  products,
+}) {
   const { t, getLocalizedCategory } = useLanguage();
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState("default");
@@ -610,7 +617,7 @@ function Catalogue({ selectedCategory, setSelectedCategory, onDetails }) {
           ? b.approvedPrice - a.approvedPrice
           : a.id - b.id,
     );
-  }, [query, selectedCategory, sort]);
+  }, [products, query, selectedCategory, sort]);
   return (
     <section className="catalogue section" id="products">
       <div className="container">
@@ -693,7 +700,7 @@ function Catalogue({ selectedCategory, setSelectedCategory, onDetails }) {
   );
 }
 
-function SubsidyTable() {
+function SubsidyTable({ products }) {
   const { t } = useLanguage();
   return (
     <section className="subsidy section" id="subsidy">
@@ -923,6 +930,11 @@ function Footer() {
 
 export default function App() {
   const { t } = useLanguage();
+  const productStore = useProducts();
+  if (window.location.pathname.startsWith("/admin")) return <AdminApp />;
+  const products = productStore.products.length
+    ? productStore.products
+    : localProducts;
   const [menuOpen, setMenuOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -936,13 +948,14 @@ export default function App() {
       <main>
         <Hero />
         <About />
-        <Categories onSelect={selectCategory} />
+        <Categories onSelect={selectCategory} products={products} />
         <Catalogue
           selectedCategory={selectedCategory}
           setSelectedCategory={setSelectedCategory}
           onDetails={setSelectedProduct}
+          products={products}
         />
-        <SubsidyTable />
+        <SubsidyTable products={products} />
         <Contact />
       </main>
       <Footer />
