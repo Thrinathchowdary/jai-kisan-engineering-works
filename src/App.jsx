@@ -4,6 +4,7 @@ import {
   FaPhoneAlt,
   FaWhatsapp,
   FaMapMarkerAlt,
+  FaEnvelope,
   FaSearch,
   FaTimes,
   FaTractor,
@@ -22,6 +23,7 @@ import AdminApp from "./AdminApp";
 
 const phone = "9160830444";
 const secondPhone = "9912335353";
+const email = "Jaikisaninkollu@gmail.com";
 const address =
   "K.K Road, Inkollu (V&M), Bapatla District, Andhra Pradesh, India";
 const whatsappBase = `https://wa.me/91${phone}`;
@@ -246,7 +248,6 @@ function Header({ menuOpen, setMenuOpen }) {
     [t("nav.home"), "home"],
     [t("nav.products"), "products"],
     [t("nav.categories"), "categories"],
-    [t("nav.subsidy"), "subsidy"],
     [t("nav.about"), "about"],
     [t("nav.contact"), "contact"],
   ];
@@ -254,12 +255,12 @@ function Header({ menuOpen, setMenuOpen }) {
     <header className="site-header">
       <nav className="nav container" aria-label="Main navigation">
         <a className="brand" href="#home" onClick={() => setMenuOpen(false)}>
-          <span className="brand-mark">
-            <FaLeaf />
-          </span>
-          <span>
-            Jai Kisan <strong>Engineering Works</strong>
-          </span>
+          <img
+            className="brand-logo"
+            src="/logo.svg"
+            alt="Jai Kisan Engineering Works"
+          />
+          <span className="brand-name">Jai Kisan Engineering Works</span>
         </a>
         <button
           className="menu-toggle"
@@ -560,16 +561,6 @@ function ProductCard({ product, onDetails }) {
           <span>{t("product.approved")}</span>
           <strong>{formatPrice(product.approvedPrice)}</strong>
         </div>
-        <div className="subsidy-preview">
-          <div>
-            <span>{t("product.subsidy50")}</span>
-            <strong>{formatPrice(product.subsidy50)}</strong>
-          </div>
-          <div>
-            <span>{t("product.share")}</span>
-            <strong>{formatPrice(product.farmerShare50)}</strong>
-          </div>
-        </div>
         <div className="card-actions">
           <button
             className="button button-dark"
@@ -700,63 +691,6 @@ function Catalogue({
   );
 }
 
-function SubsidyTable({ products }) {
-  const { t } = useLanguage();
-  return (
-    <section className="subsidy section" id="subsidy">
-      <div className="container">
-        <div className="section-heading">
-          <div>
-            <p className="eyebrow dark">
-              <span /> {t("subsidy.eyebrow")}
-            </p>
-            <h2>
-              SMAM 2025–2026
-              <br />
-              <em>{t("subsidy.titleEm")}</em>
-            </h2>
-          </div>
-        </div>
-        <div className="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>{t("subsidy.product")}</th>
-                <th>{t("subsidy.manufacturer")}</th>
-                <th>{t("subsidy.model")}</th>
-                <th>{t("product.approved")}</th>
-                <th>{t("product.subsidy50")}</th>
-                <th>{t("product.share")}</th>
-                <th>{t("product.subsidy40")}</th>
-                <th>{t("product.share")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((product) => (
-                <tr key={product.id}>
-                  <td>
-                    <strong>{product.name}</strong>
-                  </td>
-                  <td>{product.manufacturer}</td>
-                  <td>{product.model}</td>
-                  <td className="table-price">
-                    {formatPrice(product.approvedPrice)}
-                  </td>
-                  <td>{formatPrice(product.subsidy50)}</td>
-                  <td>{formatPrice(product.farmerShare50)}</td>
-                  <td>{formatPrice(product.subsidy40)}</td>
-                  <td>{formatPrice(product.farmerShare40)}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="subsidy-note">{t("subsidy.note")}</p>
-      </div>
-    </section>
-  );
-}
-
 function Contact() {
   const { t } = useLanguage();
   return (
@@ -788,6 +722,10 @@ function Contact() {
               <a href={`tel:+91${phone}`}>{phone}</a>
               <a href={`tel:+91${secondPhone}`}>{secondPhone}</a>
             </span>
+          </div>
+          <div className="detail">
+            <FaEnvelope />
+            <a href={`mailto:${email}`}>{email}</a>
           </div>
           <div className="contact-actions">
             <a className="button button-light" href={`tel:+91${phone}`}>
@@ -857,22 +795,6 @@ function Modal({ product, onClose }) {
             <span>{t("product.approved")}</span>
             <strong>{formatPrice(product.approvedPrice)}</strong>
           </div>
-          <div className="modal-prices">
-            <div>
-              <span>{t("product.subsidy50")}</span>
-              <strong>{formatPrice(product.subsidy50)}</strong>
-              <small>
-                {t("product.share")}: {formatPrice(product.farmerShare50)}
-              </small>
-            </div>
-            <div>
-              <span>{t("product.subsidy40")}</span>
-              <strong>{formatPrice(product.subsidy40)}</strong>
-              <small>
-                {t("product.share")}: {formatPrice(product.farmerShare40)}
-              </small>
-            </div>
-          </div>
           <div className="modal-actions">
             <a className="button button-dark" href={`tel:+91${phone}`}>
               <FaPhoneAlt /> {t("product.call")}
@@ -897,9 +819,11 @@ function Footer() {
       <div className="container footer-grid">
         <div>
           <a className="brand footer-brand" href="#home">
-            <span className="brand-mark">
-              <FaLeaf />
-            </span>
+            <img
+              className="brand-logo"
+              src="/logo.svg"
+              alt="Jai Kisan Engineering Works"
+            />
             <span>
               Jai Kisan <strong>Engineering Works</strong>
             </span>
@@ -910,12 +834,12 @@ function Footer() {
           <span>{address}</span>
           <a href={`tel:+91${phone}`}>{phone}</a>
           <a href={`tel:+91${secondPhone}`}>{secondPhone}</a>
+          <a href={`mailto:${email}`}>{email}</a>
         </div>
         <div className="footer-links">
           <a href="#home">{t("nav.home")}</a>
           <a href="#products">{t("nav.products")}</a>
           <a href="#categories">{t("nav.categories")}</a>
-          <a href="#subsidy">{t("nav.subsidy")}</a>
           <a href="#about">{t("footer.about")}</a>
           <a href="#contact">{t("nav.contact")}</a>
         </div>
@@ -955,7 +879,6 @@ export default function App() {
           onDetails={setSelectedProduct}
           products={products}
         />
-        <SubsidyTable products={products} />
         <Contact />
       </main>
       <Footer />

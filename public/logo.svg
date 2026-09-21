@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Jai Kisan Engineering Works logo</title>
+  <desc id="desc">Indian tricolour, Ashoka Chakra and agricultural field emblem</desc>
+  <defs>
+    <linearGradient id="field" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff9d18"/>
+      <stop offset="0.48" stop-color="#f7f4e7"/>
+      <stop offset="0.49" stop-color="#238b45"/>
+      <stop offset="1" stop-color="#0e5d37"/>
+    </linearGradient>
+  </defs>
+  <circle cx="80" cy="80" r="76" fill="#fff" stroke="#0b3153" stroke-width="5"/>
+  <path d="M8 51c28-16 52-17 72-4 25 16 45 17 72 2v19c-26 15-50 14-73-1-21-13-43-12-71 4z" fill="#f58216"/>
+  <path d="M8 72c28-16 51-17 72-4 23 15 47 16 72 1v18c-26 14-50 13-72-1-22-14-45-13-72 3z" fill="#fff"/>
+  <path d="M8 91c27-15 50-16 72-2 22 14 46 15 72 1v24c-28 15-51 13-73-1-21-14-44-13-71 3z" fill="#168348"/>
+  <circle cx="80" cy="80" r="27" fill="#fff" stroke="#172d83" stroke-width="4"/>
+  <circle cx="80" cy="80" r="4" fill="#172d83"/>
+  <g stroke="#172d83" stroke-width="2">
+    <path d="M80 53v54M53 80h54M61 61l38 38M99 61 61 99M70 54l20 52M90 54 70 106M54 70l52 20M106 70 54 90"/>
+  </g>
+  <path d="M20 126h120" stroke="#0b3153" stroke-width="5" stroke-linecap="round"/>
+  <path d="M39 124c3-13 11-18 20-18 8 0 14 4 18 11 7-7 15-10 24-8 10 2 16 7 19 15H39z" fill="#0b3153"/>
+  <circle cx="57" cy="125" r="8" fill="#fff" stroke="#0b3153" stroke-width="4"/>
+  <circle cx="108" cy="125" r="12" fill="#fff" stroke="#0b3153" stroke-width="5"/>
+  <path d="M24 126c8-7 12-14 14-23M38 103h11M35 110l-8-7" fill="none" stroke="#0b3153" stroke-width="4" stroke-linecap="round"/>
+</svg>
